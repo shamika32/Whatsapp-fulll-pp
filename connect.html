@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whatsapp full dp tool</title>
+  <link rel="shortcut icon" type="x-icon" href="https://i.ibb.co/brcMtjj/icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ::-moz-selection{
+      background-color: #ff000042;
+    }
+    ::selection{
+      background-color: #ff000042;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+      color: #ffffff;
+      background-color: #000000;
+      overflow: hidden;
+      animation: backgroundAnimation .3s ease-in-out;
+    }
+
+    @keyframes backgroundAnimatio {
+      0% {
+      }
+      100% {
+        background-position: 100% 100%;
+      }
+    }
+    section{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .hero-section{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+    .hero-section::before{
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("https://i.ibb.co/vzfmRYR/WIZAR-MD-4.png");
+      background-size: cover;
+      z-index: -1;
+  
+      mask-image: url("https://i.ibb.co/1Gj2bBKd/ink-lv2.gif");
+      mask-size: cover;
+      mask-position: center;
+      animation: backgroundAnimation 30s infinite alternate;
+      animation-delay: 4s;
+    }
+    
+    @keyframes backgroundAnimation {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 100% 100%;
+      }
+    }
+    .container {
+      width:400px;
+      max-width: 90%;
+    }
+
+    .box {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0px 0px 60px rgba(255, 0, 0, 0.233);
+      text-align: center;
+      animation: boxFadeIn 1s ease-out;
+    }
+
+    @keyframes boxFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    p{
+      margin-bottom: 10px;
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input {
+      padding: 1rem;
+      outline: none;
+      transition: .3s;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #ffffff10;
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
+    input:valid,
+    input:focus{
+    border: none;
+}
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    button {
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #ff4f6d, #FF0000);
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+    }
+    #loading-spinner {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      height: 20px;
+    }
+    #loading-spinner span{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      animation: 1.2s sudmiteloa ease-in-out infinite;
+    }
+    #loading-spinner span:nth-child(1){
+      animation-delay: -0.24s;
+    }
+    #loading-spinner span:nth-child(2){
+      animation-delay: -0.12s;
+    }
+    #loading-spinner span:nth-child(3){
+      animation-delay: 0s;
+    }
+    @keyframes sudmiteloa{
+      0%, 80%, 100% {
+      transform: scale(0);
+  }
+  40% {
+      transform: scale(1);
+  }
+    }
+
+    .image-upload-container {
+      margin: 1rem 0;
+      display: none;
+    }
+    
+    .image-upload-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .image-upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .image-upload-box:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .image-upload-box i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .image-upload-box p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .image-preview {
+      max-width: 100%;
+      max-height: 150px;
+      margin-top: 1rem;
+      border-radius: 8px;
+      display: none;
+    }
+    
+    .remove-image {
+      color: #ff4f6d;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      display: none;
+    }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      animation: footerFadeIn 2s ease-out;
+    }
+
+    @keyframes footerFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #pair {
+      margin-top: 2rem;
+    }
+
+    .code-display {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-align: center;
+      overflow-wrap: break-word;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .code-display:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .code-label {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+
+      h3 {
+        font-size: 1.4rem;
+      }
+
+      input, button {
+        font-size: 1rem;
+      }
+
+      .code-display {
+        font-size: 1.1rem;
+      }
+    }
+    .code-display{
+      font-family: sans-serif;
+      font-size: 0.99em;
+      color: #ffffffd2;
+    }
+    .code-display .emo1{
+      animation: .3s emo ease-in-out infinite;
+    }
+    @keyframes em{
+      50%{
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero-section">
+    <div class="container">
+      <div class="box">
+        <h3>📞 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩 𝐅𝐮𝐥𝐥 𝐃𝐏 🧙‍♂️ </h3>
+        <p>Enter Your Number With Country Code</p>
+        <div class="input-container">
+          <input type="tel" id="number" placeholder="Enter Your Number" />
+          
+          <div class="image-upload-container" id="imageUploadContainer">
+            <label class="image-upload-label">Upload Profile Picture (Optional)</label>
+            <div class="image-upload-box" id="imageUploadBox">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Click to upload image</p>
+              <input type="file" id="imageInput" accept="image/jpeg,image/png,image/jpg" style="display: none;" />
+              <img id="imagePreview" class="image-preview" />
+              <div id="removeImage" class="remove-image">Remove image</div>
+            </div>
+          </div>
+          
+          <button id="submit">
+            <div id="sss">
+              <i class="fas fa-paper-plane"></i> Submit
+            </div>
+            <div id="loading-spinner">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
+        <div id="pair"></div>
+      </div>
+      <div class="footer">
+        Made with ❤️ By MR.Shamika
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    let a = document.getElementById("pair");
+    let b = document.getElementById("submit");
+    let c = document.getElementById("number");
+    let imageUploadContainer = document.getElementById("imageUploadContainer");
+    let imageUploadBox = document.getElementById("imageUploadBox");
+    let imageInput = document.getElementById("imageInput");
+    let imagePreview = document.getElementById("imagePreview");
+    let removeImage = document.getElementById("removeImage");
+    let uploadedImagePath = null;
+
+    // Show image upload when number is valid
+    c.addEventListener('input', function() {
+      const num = c.value.replace(/[^0-9]/g, '');
+      if (num.length >= 11) {
+        imageUploadContainer.style.display = 'block';
+      } else {
+        imageUploadContainer.style.display = 'none';
+      }
+    });
+
+    // Handle image upload
+    imageUploadBox.addEventListener('click', function() {
+      imageInput.click();
+    });
+
+    imageInput.addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+          imagePreview.src = event.target.result;
+          imagePreview.style.display = 'block';
+          removeImage.style.display = 'block';
+          imageUploadBox.querySelector('p').textContent = file.name;
+        };
+        
+        reader.readAsDataURL(file);
+      }
+    });
+
+    removeImage.addEventListener('click', function(e) {
+      e.stopPropagation();
+      imageInput.value = '';
+      imagePreview.src = '';
+      imagePreview.style.display = 'none';
+      removeImage.style.display = 'none';
+      imageUploadBox.querySelector('p').textContent = 'Click to upload image';
+      uploadedImagePath = null;
+    });
+
+    async function Copy() {
+      let obj = document.querySelector(".code-display");
+      await navigator.clipboard.writeText(obj.textContent);
+      obj.textContent = "COPIED ✔️ ";
+      obj.style.background = "rgba(255, 0, 57)";
+      setTimeout(() => {
+        obj.textContent = obj.getAttribute("data-original");
+        obj.style.background = "rgba(0, 0, 0, 0.3)";
+      }, 1000);
+    }
+
+    b.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!c.value) {
+        a.innerHTML = '<div class="code-display">❗ Enter your WhatsApp number with country code.</div>';
+      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
+        a.innerHTML = '<div class="code-display"> <span class="emo1">❗</span> Invalid number format. Please try again.</div>';
+      } else {
+        const bc = c.value.replace(/[^0-9]/g, "");
+        let bb = "";
+        let bbc = "";
+        const cc = bc.split('');
+        cc.map(a => {
+          bbc += a;
+          if (bbc.length == 3) {
+            bb += " " + a;
+          } else if (bbc.length == 8) {
+            bb += " " + a;
+          } else {
+            bb += a;
+          }
+        });
+        c.type = "text";
+        c.value = "+" + bb;
+        c.style = "color:white;font-size:20px";
+        document.getElementById("loading-spinner").style.display = "flex";
+        document.getElementById("sss").style.display = "none";
+        a.innerHTML = ''; // Clear the previous content
+        
+        try {
+          let formData = new FormData();
+          formData.append('number', bc);
+          
+          // Upload image if selected
+          if (imageInput.files.length > 0) {
+            formData.append('profileImage', imageInput.files[0]);
+            
+            // First upload the image
+            const uploadResponse = await axios.post('/upload', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            });
+            
+            uploadedImagePath = uploadResponse.data.path;
+          }
+          
+          // Then get the pairing code
+          let { data } = await axios(`/code?number=${bc}${uploadedImagePath ? '&imagePath=' + encodeURIComponent(uploadedImagePath) : ''}`);
+          let code = data.code || "❗ Service Unavailable";
+          a.innerHTML = `
+            <div class="code-label">Your Code:</div>
+            <div class="code-display" onclick="Copy()" data-original="${code}">${code}</div>
+            <div style="font-size: 0.8rem; margin-top: 0.5rem;">Click To Copy</div>
+          `;
+        } catch (error) {
+          console.error('Error:', error);
+          a.innerHTML = '<div class="code-display">❗ Error processing your request. Please try again.</div>';
+        } finally {
+          document.getElementById("loading-spinner").style.display = "none";
+          document.getElementById("sss").style.display = "block";
+        }
+      }
+    });
+    
+    // Disable Right-Click
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+  // Disable Keyboard Shortcuts
+    document.addEventListener("keydown", function (e) {
+      // Disable F12
+      if (e.key === "F12") {
+        e.preventDefault();
+    }
+    // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C
+    if (e.ctrlKey && (e.shiftKey || e.key === "u" || e.key === "j" || e.key === "c" || e.key === "i" || e.key === "U" || e.key === "J" || e.key === "C" || e.key === "I")) {
+      e.preventDefault();
+    }
+  });
+  </script>
+</body>
+</html>
