@@ -62,7 +62,7 @@ app.post('/upload', upload.single('profileImage'), (req, res) => {
 });
 
 // Serve pair.html
-app.get('/connect', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__path, 'connect.html'));
 });
 
