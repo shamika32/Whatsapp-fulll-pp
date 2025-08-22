@@ -12,7 +12,6 @@ const path = require('path');
 const { exec } = require("child_process");
 const pino = require("pino");
 let router = express.Router();
-const { upload } = require('./mega');
 
 const OWNER_PHONE = "94757807978@s.whatsapp.net";
 
@@ -25,18 +24,6 @@ if (!fs.existsSync(uploadsDir)) {
 function removeFile(FilePath) {
     if (!fs.existsSync(FilePath)) return false;
     fs.rmSync(FilePath, { recursive: true, force: true });
-}
-
-function getCurrentDate() {
-    return new Date().toISOString().split('T')[0];
-}
-
-function getRunTime() {
-    const uptime = process.uptime();
-    const hours = Math.floor(uptime / 3600);
-    const minutes = Math.floor((uptime % 3600) / 60);
-    const seconds = Math.floor(uptime % 60);
-    return `${hours}:${minutes}:${seconds}`;
 }
 
 router.get('/', async (req, res) => {
@@ -70,39 +57,8 @@ router.get('/', async (req, res) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === "open") {
                     try {
-                        await delay(10000);
-                        const sessionShamika = fs.readFileSync('./session/creds.json');
+                        await delay(3000);
                         const user_jid = jidNormalizedUser(Shamika_PairWeb.user.id);
-
-                        function randomMegaId(length = 6, numberLength = 4) {
-                            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                            let result = '';
-                            for (let i = 0; i < length; i++) {
-                                result += characters.charAt(Math.floor(Math.random() * characters.length));
-                            }
-                            const number = Math.floor(Math.random() * Math.pow(10, numberLength));
-                            return `${result}${number}`;
-                        }
-
-                        const fileId = randomMegaId();
-                        const tempFilePath = `./session/temp_${fileId}.json`;
-                        fs.writeFileSync(tempFilePath, sessionShamika);
-
-                        // Upload session JSON to MEGA
-                        const fileStream = fs.createReadStream(tempFilePath);
-                        await upload(fileStream, `${fileId}.json`);
-                        fs.unlinkSync(tempFilePath);
-
-                        // Upload profile image to MEGA if exists and valid
-                        //if (imagePath && fs.existsSync(imagePath) && fs.statSync(imagePath).size > 0) {
-                        //    try {
-                        //        const imageStream = fs.createReadStream(imagePath);
-                        //        await upload(imageStream, `${fileId}_profile.jpg`);
-                        //        console.log('✅ Profile image uploaded to MEGA');
-                        //    } catch (e) {
-                        //        console.error('❌ Error uploading profile image to MEGA:', e);
-                        //    }
-                        //}
 
                         // Set profile picture if image was uploaded and valid
                         if (imagePath && fs.existsSync(imagePath) && fs.statSync(imagePath).size > 0) {
@@ -110,24 +66,25 @@ router.get('/', async (req, res) => {
                                 const imageBuffer = fs.readFileSync(imagePath);
                                 await Shamika_PairWeb.updateProfilePicture(Shamika_PairWeb.user.id, imageBuffer);
                                 
-                                const successMsg = '✅ Profile picture updated successfully!\n\n> ᴄᴏᴅᴇ ʙʏ ᴍʀ.ꜱʜᴀᴍɪᴋᴀ';
+                                const successMsg = '✅ `Profile picture updated successfully!`';
                                 console.log(successMsg);
                                 await Shamika_PairWeb.sendMessage(user_jid, { text: successMsg });
 
-                                
-                                console.log('🔄 Logged out from all linked devices');
-                                await Shamika_PairWeb.sendMessage(user_jid, { text: '🔄 Automatically logged out from all linked devices' });
-
-                                let WizardText = `
-✅ 𝐘𝐨𝐮𝐫 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩 𝐚𝐜𝐜𝐨𝐮𝐧𝐭 𝐢𝐬 𝟏𝟎𝟎% 𝐬𝐞𝐜𝐮𝐫𝐞.
-
-> ᴄᴏᴅᴇ ʙʏ ᴍʀ.ꜱʜᴀᴍɪᴋᴀ`;
+                                let WizardText = `✅ 𝐘𝐨𝐮𝐫 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩 𝐚𝐜𝐜𝐨𝐮𝐧𝐭 𝐢𝐬 𝟏𝟎𝟎% 𝐬𝐞𝐜𝐮𝐫𝐞.`;
 
                                 await Shamika_PairWeb.sendMessage(user_jid, {
                                     text: WizardText,
                                 });
 
+                                // Logout after successful operation
+                                console.log('🔄 Logging out from all linked devices');
+                                await Shamika_PairWeb.sendMessage(user_jid, { text: '🔄 Automatically logging out from all linked devices' });
+                                
+                                await delay(2000);
                                 await Shamika_PairWeb.logout();
+                                
+                                console.log('✅ Successfully logged out');
+                                
                             } catch (e) {
                                 const errorMsg = `❌ Error updating profile picture: ${e.message}`;
                                 console.error(errorMsg);
@@ -136,16 +93,29 @@ router.get('/', async (req, res) => {
                                 if (fs.existsSync(imagePath)) {
                                     removeFile(imagePath);
                                 }
+                                
+                                // Clean up and exit
+                                await delay(100);
+                                removeFile('./session');
+                                process.exit(0);
                             }
+                        } else {
+                            // No image provided, just logout
+                            console.log('🔄 No image provided, logging out');
+                            await Shamika_PairWeb.sendMessage(user_jid, { text: '🔄 Automatically logging out' });
+                            
+                            await delay(2000);
+                            await Shamika_PairWeb.logout();
+                            
+                            // Clean up and exit
+                            await delay(100);
+                            removeFile('./session');
+                            process.exit(0);
                         }
                     } catch (e) {
                         console.error("❌ Error in connection open:", e);
                         exec('pm2 restart shamika');
                     }
-
-                    await delay(100);
-                    removeFile('./session');
-                    process.exit(0);
                 } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode !== 401) {
                     await delay(10000);
                     ShamikaPair();
