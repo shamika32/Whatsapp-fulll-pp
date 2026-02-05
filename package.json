@@ -9,7 +9,7 @@
     "restart": "pm2 restart shamika"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "github:nstar-y/bail",
+    "shamika-wa-baileys": "^1.2.0",
     "awesome-phonenumber": "^2.64.0",
     "body-parser": "^1.20.1",
     "child_process": "^1.0.2",
