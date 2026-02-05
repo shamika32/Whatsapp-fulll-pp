@@ -1,6 +1,6 @@
 {
-  "name": "session-generate",
-  "version": "0.0.1",
+  "name": "whatsapp-full-dp",
+  "version": "1.0.0",
   "description": "A multi functional whatsapp bot session paircode.",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,22 @@
     "stop": "pm2 stop shamika",
     "restart": "pm2 restart shamika"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamika32/Whatsapp-fulll-pp.git"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "session",
+    "paircode"
+  ],
+  "author": "Mr.Shamika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shamika32/Whatsapp-fulll-pp/issues"
+  },
+  "homepage": "https://github.com/shamika32/Whatsapp-fulll-pp#readme",
   "dependencies": {
     "shamika-wa-baileys": "^1.2.0",
     "awesome-phonenumber": "^2.64.0",
@@ -25,14 +41,6 @@
     "qrcode": "^1.5.3"
   },
   "engines": {
-    "node": ">=14.0.0"
-  },
-  "author": "Mr.Shamika",
-  "license": "MIT",
-  "keywords": [
-    "whatsapp",
-    "bot",
-    "session",
-    "paircode"
-  ]
+    "node": ">=20.0.0"
+  }
 }
