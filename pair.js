@@ -5,15 +5,13 @@ const {
     makeCacheableSignalKeyStore,
     Browsers,
     jidNormalizedUser
-} = require("@whiskeysockets/baileys");
+} = require("shamika-wa-baileys");
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { exec } = require("child_process");
 const pino = require("pino");
 let router = express.Router();
-
-const OWNER_PHONE = "94757807978@s.whatsapp.net";
 
 // Ensure uploads directory exists
 const uploadsDir = path.join(__dirname, './uploads');
