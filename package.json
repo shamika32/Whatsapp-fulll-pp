@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-full-dp",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A multi functional whatsapp bot session paircode.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shamika32/Whatsapp-fulll-pp.git"
+    "url": "git+https://github.com/shamika32/Whatsapp-full-dp.git"
   },
   "keywords": [
     "whatsapp",
@@ -21,24 +21,24 @@
   "author": "Mr.Shamika",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shamika32/Whatsapp-fulll-pp/issues"
+    "url": "https://github.com/shamika32/Whatsapp-full-dp/issues"
   },
-  "homepage": "https://github.com/shamika32/Whatsapp-fulll-pp#readme",
+  "homepage": "https://github.com/shamika32/Whatsapp-full-dp#readme",
   "dependencies": {
-    "shamika-wa-baileys": "^1.2.0",
-    "awesome-phonenumber": "^2.64.0",
-    "body-parser": "^1.20.1",
-    "child_process": "^1.0.2",
-    "express": "^4.18.1",
-    "jimp": "^0.16.13",
-    "megajs": "^1.1.0",
-    "multer": "^2.0.2",
-    "node-cache": "^5.1.2",
-    "path": "^0.12.7",
-    "phone": "3.1.30",
-    "pino": "^8.1.0",
-    "pm2": "^6.0.8",
-    "qrcode": "^1.5.3"
+    "awesome-phonenumber": "latest",
+    "body-parser": "latest",
+    "child_process": "latest",
+    "express": "latest",
+    "jimp": "latest",
+    "megajs": "latest",
+    "multer": "latest",
+    "node-cache": "latest",
+    "path": "latest",
+    "phone": "latest",
+    "pino": "latest",
+    "pm2": "latest",
+    "qrcode": "latest",
+    "shamika-wa-baileys": "^1.2.1"
   },
   "engines": {
     "node": ">=20.0.0"
