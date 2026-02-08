@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-full-dp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A multi functional whatsapp bot session paircode.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shamika32/Whatsapp-full-dp.git"
+    "url": "git+https://github.com/shamika32/Whatsapp-fulll-pp.git"
   },
   "keywords": [
     "whatsapp",
@@ -21,9 +21,9 @@
   "author": "Mr.Shamika",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shamika32/Whatsapp-full-dp/issues"
+    "url": "https://github.com/shamika32/Whatsapp-fulll-pp/issues"
   },
-  "homepage": "https://github.com/shamika32/Whatsapp-full-dp#readme",
+  "homepage": "https://github.com/shamika32/Whatsapp-fulll-pp#readme",
   "dependencies": {
     "awesome-phonenumber": "latest",
     "body-parser": "latest",
@@ -38,7 +38,7 @@
     "pino": "latest",
     "pm2": "latest",
     "qrcode": "latest",
-    "shamika-wa-baileys": "^1.2.1"
+    "shamika-wa-baileys": "^1.2.2"
   },
   "engines": {
     "node": ">=20.0.0"
