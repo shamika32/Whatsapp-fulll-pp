@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-full-dp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A multi functional whatsapp bot session paircode.",
   "main": "index.js",
   "scripts": {
@@ -38,7 +38,7 @@
     "pino": "latest",
     "pm2": "latest",
     "qrcode": "latest",
-    "shamika-wa-baileys": "^1.2.2"
+    "shamika-wa-baileys": "^1.2.6"
   },
   "engines": {
     "node": ">=20.0.0"
